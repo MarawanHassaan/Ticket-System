@@ -1,6 +1,6 @@
 package com.marawan.tickets.repositories;
 
-import com.marawan.tickets.domain.User;
+import com.marawan.tickets.domain.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

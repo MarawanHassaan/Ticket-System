@@ -1,7 +1,7 @@
 package com.marawan.tickets.filters;
 
 
-import com.marawan.tickets.domain.User;
+import com.marawan.tickets.domain.entities.User;
 import com.marawan.tickets.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

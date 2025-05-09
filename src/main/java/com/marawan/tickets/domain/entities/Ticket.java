@@ -1,4 +1,4 @@
-package com.marawan.tickets.domain;
+package com.marawan.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

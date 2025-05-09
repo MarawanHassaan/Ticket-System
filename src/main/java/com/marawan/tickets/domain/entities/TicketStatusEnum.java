@@ -1,4 +1,4 @@
-package com.marawan.tickets.domain;
+package com.marawan.tickets.domain.entities;
 
 public enum TicketStatusEnum {
     PURCHASED,
