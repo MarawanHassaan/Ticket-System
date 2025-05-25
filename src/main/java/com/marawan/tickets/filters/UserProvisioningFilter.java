@@ -1,6 +1,5 @@
 package com.marawan.tickets.filters;
 
-
 import com.marawan.tickets.domain.entities.User;
 import com.marawan.tickets.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
@@ -22,22 +21,33 @@ import java.util.UUID;
 public class UserProvisioningFilter extends OncePerRequestFilter {
 
     private final UserRepository userRepository;
+
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain) throws ServletException, IOException {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if(authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof Jwt jwt){
-            UUID keycloakID = UUID.fromString(jwt.getSubject());
-            if(!userRepository.existsById(keycloakID)){
+        if (authentication != null
+                && authentication.isAuthenticated()
+                && authentication.getPrincipal() instanceof Jwt jwt) {
+
+            UUID keycloakId = UUID.fromString(jwt.getSubject());
+
+            if (!userRepository.existsById(keycloakId)) {
+
                 User user = new User();
-                user.setId(keycloakID);
+                user.setId(keycloakId);
                 user.setName(jwt.getClaimAsString("preferred_username"));
                 user.setEmail(jwt.getClaimAsString("email"));
+
                 userRepository.save(user);
             }
 
         }
 
-        filterChain.doFilter(request,response);
+        filterChain.doFilter(request, response);
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -37,7 +38,7 @@ public class QrCode {
     @Column(name = "created_at", updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
-    @LastModifiedBy
+    @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
